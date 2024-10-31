@@ -1,4 +1,7 @@
 // authContext.js
+
+//web 748725839536-jkobkoroekamealpqtjvt4hl1qvcb8hn.apps.googleusercontent.com
+//android 748725839536-c38mub3sb97saltgtq5stgv6p5vb9u5o.apps.googleusercontent.com
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import * as Google from "expo-auth-session/providers/google";
@@ -16,7 +19,8 @@ interface User {
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [request, response, promptAsync] = Google.useAuthRequest({
-		clientId: "YOUR_GOOGLE_CLIENT_ID",
+		webClientId: "748725839536-jkobkoroekamealpqtjvt4hl1qvcb8hn.apps.googleusercontent.com",
+		androidClientId: "748725839536-c38mub3sb97saltgtq5stgv6p5vb9u5o.apps.googleusercontent.com",
 	});
 
 	// Restore user session on app start
