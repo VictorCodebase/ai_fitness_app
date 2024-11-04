@@ -6,7 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { AuthProvider } from "../context/googleAuthContext";
 import "react-native-reanimated";
-
+import setupDb from "../db/setup";
 import { useColorScheme } from "@/components/useColorScheme";
 
 export {
@@ -38,6 +38,13 @@ export default function RootLayout() {
 			SplashScreen.hideAsync();
 		}
 	}, [loaded]);
+
+	useEffect(() => {
+		async function setup() {
+			await setupDb();
+		}
+		setup();
+	}, []);
 
 	if (!loaded) {
 		return null;

@@ -69,6 +69,20 @@ export default function TabLayout() {
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 				}}
 			/>
+			<Tabs.Screen
+				name="screen2"
+				options={{
+					title: "screen2",
+					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+				}}
+			/>
+			<Tabs.Screen
+				name="screen3"
+				options={{
+					title: "screen3",
+					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+				}}
+			/>
 		</Tabs>
   );
 }

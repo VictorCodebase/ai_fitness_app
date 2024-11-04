@@ -1,14 +1,16 @@
 import * as SQLite from "expo-sqlite";
 
-async function createTableIfNotExist() {
-	const db = await SQLite.openDatabaseAsync("db.db");
+let dbInstance: SQLite.SQLiteDatabase | null = null;
+
+async function createTableIfNotExist(db:SQLite.SQLiteDatabase) {
 
 	try {
 		await db.execAsync(`
-      CREATE TABLE IF NOT EXISTS users (
+      CREATE TABLE IF NOT EXISTS userData (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        age INTEGER
+        age INTEGER,
+		gender Varchar(50),
+		height INTEGER,
       );
     `);
 
@@ -16,5 +18,13 @@ async function createTableIfNotExist() {
 	} catch (error) {
 		console.error("Error creating table:", error);
 	}
+}
+
+export default async function setupDb(){
+	if(!dbInstance){
+		dbInstance = await SQLite.openDatabaseAsync("db.db");
+		await createTableIfNotExist(dbInstance);
+	}
+	return dbInstance;
 }
 
